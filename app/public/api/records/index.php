@@ -4,8 +4,8 @@
 $db = DbConnection::getConnection();
 
 // Step 2: Create & run the query
-$stmt = $db->prepare('SELECT * FROM Patient');
-$stmt->execute();
+$stmt = $db->prepare('SELECT * FROM PatientVisit');
+$stmt->execute(); //has access to all the data now, but did not return it
 $patients = $stmt->fetchAll();
 
 // patientGuid VARCHAR(64) PRIMARY KEY,
@@ -18,5 +18,5 @@ $patients = $stmt->fetchAll();
 $json = json_encode($patients, JSON_PRETTY_PRINT);
 
 // Step 4: Output
-header('Content-Type: application/json');
+header('Content-Type: application/json'); //mime type
 echo $json;

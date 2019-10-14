@@ -14,3 +14,12 @@ INSERT INTO Patient (patientGuid, firstName, lastName, dob, sexAtBirth) VALUES
 ("SOME-UNIQUE-ABCDE1", "J", "Doe", "1950-00-00",  ""),
 ("SOME-DUMMY-DATA", "Pepper", "Potts", "1990-01-31",  "F");
 
+CREATE TABLE PatientVisit (
+visitid INTEGER PRIMARY KEY AUTO_INCREMENT,
+patientGuid VARCHAR(64) UNIQUE,
+visitDescription TEXT NOT NULL DEFAULT '',
+visitDateUtc DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+priority ENUM('Low','Medium','High') NOT NULL DEFAULT 'Low',
+FOREIGN KEY (patientGuid) REFERENCES Patient(patientGuid)
+);
+
